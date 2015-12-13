@@ -136,10 +136,10 @@
       '("emacs " emacs-version (buffer-file-name " - %f")))
 
 ;; 初期画面の非表示
-;;(setq inhibit-startup-message nil)
-;;(setq inhibit-startup-screen nil)
-(setq inhibit-startup-message t)
-(setq inhibit-startup-screen t)
+(setq inhibit-startup-message nil)
+(setq inhibit-startup-screen nil)
+;;(setq inhibit-startup-message t)
+;;(setq inhibit-startup-screen t)
 
 ;; フルスクリーン化
 (global-set-key (kbd "<A-return>") 'toggle-frame-fullscreen)
@@ -573,6 +573,21 @@
 ;;; 個人の追加設定                                                  ;;;
 ;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;
 
+;;; パッケージの設定
+(require 'package)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(package-initialize)
+
+;;; 右から左に読む言語に対応させないことで描画高速化
+(setq-default bidi-display-reordering nil)
+
+;;; splash screenを無効にする
+(setq inhibit-splash-screen t)
+
+;;; 同じ内容を履歴に記録しないようにする
+(setq history-delete-duplicates t)
+
 ;; ツールバー非表示
 (tool-bar-mode 0)
 
@@ -581,6 +596,9 @@
 
 ;; C-h でバックスペース
 (keyboard-translate ?\C-h ?\C-?)
+
+;;; モードラインに時刻を表示する
+(display-time)
 
 
 ;; Local Variables:
